@@ -1,22 +1,23 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.beautifier.PoemBeautifier;
 
 public class StreamMain {
     public static void main(String[] args) {
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
+        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        String text = "example";
+        poemBeautifier.beautify(text, (a) -> a.toUpperCase());
+        poemBeautifier.beautify(text, (a) -> "ABC " + a +" ABC");
+        poemBeautifier.beautify(text, (a) -> a.substring(2 ,5));
+        poemBeautifier.beautify(text, (a) -> {
+            char[] temporary = a.toCharArray();
+            String result = "";
+            for(int i = a.length(); i > 0; i--)
+            {
+                result += temporary[i-1];
+            }
+            return result;
+        });
 
-        System.out.println("Calculating expressions with lambdas");
-        expressionExecutor.executeExpression(10,5, (a, b) -> a + b);
-        expressionExecutor.executeExpression(10,5, (a, b) -> a - b);
-        expressionExecutor.executeExpression(10,5, (a, b) -> a * b);
-        expressionExecutor.executeExpression(10,5, (a, b) -> a / b);
-
-        System.out.println("Calculating expression with method references");
-        expressionExecutor.executeExpression(10,5, FunctionalCalculator::addABtoB);
-        expressionExecutor.executeExpression(10,5, FunctionalCalculator::subAToB);
-        expressionExecutor.executeExpression(10,5, FunctionalCalculator::multiplyAByB);
-        expressionExecutor.executeExpression(10,5, FunctionalCalculator::divideAByB);
     }
 }
