@@ -3,11 +3,8 @@ package com.kodilla.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Test;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.LongToIntFunction;
 
 import static java.util.stream.Collectors.toList;
 
@@ -157,6 +154,6 @@ public class BoardTestSuite {
                 .average().getAsDouble();
 
         //Then
-        Assert.assertEquals(10,result,0);
+        Assert.assertEquals(10,result,0.001);
     }
 }
