@@ -3,8 +3,11 @@ package com.kodilla.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Test;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.LongToIntFunction;
 
 import static java.util.stream.Collectors.toList;
 
@@ -136,4 +139,24 @@ public class BoardTestSuite {
         Assert.assertEquals(2, longTasks);
     }
 
+    @Test
+    public void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        int amount=0;
+        double result = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated())
+                .map(t->LocalDate.now().toEpochDay()-t.toEpochDay())
+                .mapToInt(t-> t.intValue())
+                .average().getAsDouble();
+
+        //Then
+        Assert.assertEquals(10,result,0);
+    }
 }
