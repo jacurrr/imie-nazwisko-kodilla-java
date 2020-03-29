@@ -1,17 +1,25 @@
 package com.kodilla.exception.main;
 
 
-import com.kodilla.exception.io.FileReader;
-import com.kodilla.exception.io.FileReaderException;
+import com.kodilla.exception.test.Flight;
+import com.kodilla.exception.test.RouteNotFoundException;
+import com.kodilla.exception.test.SearchFlight;
 
 public class ExceptionModuleRunner {
     public static void main(String args[]) {
-        FileReader fileReader = new FileReader();
-
+        SearchFlight searchFlight = new SearchFlight();
+        boolean result;
         try {
-            fileReader.readFile();
-        } catch (FileReaderException e) {
-            System.out.println("Problem while reading a file!");
+            result = searchFlight.findFlight(new Flight("London","Warszawa"));
+            if(result) {
+                System.out.println("Flight is available.");
+            }else {
+                System.out.println("Flight isn't available.");
+            }
+        } catch (RouteNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("End task.");
         }
     }
 }
