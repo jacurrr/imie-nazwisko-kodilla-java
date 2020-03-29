@@ -11,15 +11,9 @@ public class SearchFlight{
         availableAirport.put("Gdańsk",false);
         availableAirport.put("Poznań",true);
         availableAirport.put("Kraków",false);
-        boolean result = false;
-        for (Map.Entry<String, Boolean> entry : availableAirport.entrySet()
-             ) {
-            if(entry.getKey() == flight.getArrivalAirport()){
-                result = true;
-                return entry.getValue();
-            }
+        if(!availableAirport.containsKey(flight.getArrivalAirport())) {
+            throw new RouteNotFoundException();
         }
-        if(!result) throw new RouteNotFoundException();
-        return false;
+        return availableAirport.get(flight.getArrivalAirport());
     }
 }
