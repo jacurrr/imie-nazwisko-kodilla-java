@@ -13,4 +13,13 @@ public class LoggerTestSuite {
         //Then
         Assert.assertEquals("test12345", result);
     }
+
+    @Test
+    public void testGetEmptyLog(){
+        //Given
+        //When
+        String result = Logger.getInstance().getLastLog();
+        //Then
+        Assert.assertEquals("", result);
+    }
 }
