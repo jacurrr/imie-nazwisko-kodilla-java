@@ -8,7 +8,6 @@ public class SettingsFileEngine {
     }
 
     public static SettingsFileEngine getInstance() {
-
         if (settingsFileEngineInstance == null) {
             synchronized(SettingsFileEngine.class) {
                 if (settingsFileEngineInstance == null) {
@@ -16,7 +15,6 @@ public class SettingsFileEngine {
                 }
             }
         }
-
         return settingsFileEngineInstance;
     }
 
