@@ -36,14 +36,11 @@ public class InvoiceDaoTestSuite {
         item2.setInvoice(invoice);
         item3.setInvoice(invoice);
         //When
-        productDAO.save(product1);
-        productDAO.save(product2);
         invoiceDAO.save(invoice);
         //Then
         int id = invoice.getId();
         Optional<Invoice> readInvoice = invoiceDAO.findById(id);
         Assert.assertTrue(readInvoice.isPresent());
-
         //CleanUp
         invoiceDAO.deleteById(id);
     }
