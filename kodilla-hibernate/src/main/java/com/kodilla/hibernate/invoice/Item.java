@@ -36,7 +36,7 @@ public class Item {
         this.id = id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
     public Product getProduct() {
         return product;
